@@ -93,6 +93,8 @@ class SampleNode(val name: String, port: Int, children: Seq[(String, Props)]) {
 }
 
 object SampleActor {
+  import scala.language.implicitConversions
+
   case class Tree(recipient: ActorRef, next: Seq[Tree]) {
     def ~> (tree: Tree): Tree = copy(next = next :+ tree)
   }
